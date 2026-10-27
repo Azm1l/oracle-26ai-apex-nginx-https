@@ -17,13 +17,13 @@ cp .env.example .env
 chmod +x scripts/get-apex.sh
 sudo ./scripts/get-apex.sh
 chmod +x scripts/setup-public-nginx.sh
-sudo ./scripts/setup-public-nginx.sh ords.calistalab.my.id admin@example.com
+sudo ./scripts/setup-public-nginx.sh your-domain.com admin@example.com
 ```
 
 Email is optional:
 
 ```bash
-sudo ./scripts/setup-public-nginx.sh ords.calistalab.my.id
+sudo ./scripts/setup-public-nginx.sh your-domain.com
 ```
 Wait until proccess done.
 
