@@ -14,7 +14,8 @@ Run from the repo root:
 
 ```bash
 cp .env.example .env
-chmod +x scripts/get-apex.sh 
+chmod +x scripts/get-apex.sh
+sudo ./scripts/get-apex.sh
 chmod +x scripts/setup-public-nginx.sh
 sudo ./scripts/setup-public-nginx.sh ords.calistalab.my.id admin@example.com
 ```
