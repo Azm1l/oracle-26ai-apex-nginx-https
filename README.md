@@ -57,7 +57,16 @@ Before running the setup, make sure you have:
 2. Copy this repository's files into the repository root, preserving the upstream `.env`, `apex/`, and helper scripts.
 3. Replace the upstream `docker-compose.yml` with the one in this repo.
 4. Create `.env` from `.env.example` and set strong passwords.
-5. Run:
+5. Download and unpack the APEX source bundle before starting the stack:
+
+```bash
+chmod +x scripts/get-apex.sh
+./scripts/get-apex.sh
+```
+
+This script downloads the Oracle APEX ZIP, validates the published SHA256 checksum, and extracts it into `./apex` so the ORDS container can install or upgrade APEX on first boot.
+
+6. Run the public HTTPS setup:
 
 ```bash
 chmod +x scripts/setup-public-nginx.sh
@@ -76,6 +85,7 @@ sudo ./scripts/setup-public-nginx.sh your-domain.example.com admin@example.com
 - Do not run `docker compose down -v` unless you explicitly want to delete persistent data.
 - This repository is a patch/setup bundle, not a full replacement for the upstream application source.
 - The setup script only configures Nginx and certificates; it does not rewrite the Docker Compose file.
+- Run `./scripts/get-apex.sh` before `docker compose up -d` when setting up a fresh environment.
 
 ## Environment variables
 
@@ -109,6 +119,9 @@ curl -I https://your-domain.example.com/i/apex_version.txt
 ### `docker-compose.yml`
 Defines the full Oracle DB + ORDS + Nginx stack and keeps the database and ORDS internal to Docker networking.
 
+### `scripts/get-apex.sh`
+Downloads Oracle APEX, verifies the published checksum, and extracts it into `./apex`.
+
 ### `scripts/setup-public-nginx.sh`
 Handles:
 
@@ -135,5 +148,5 @@ This project does not declare a repository license in the GitHub metadata. Use i
 - `PATCH-README.md`
 - `.env.example`
 - `docker-compose.yml`
+- `scripts/get-apex.sh`
 - `scripts/setup-public-nginx.sh`
-
